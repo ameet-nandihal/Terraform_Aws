@@ -1,2 +1,2 @@
 # Terraform_Aws
-terraform aws code for vpc, subnets and ec2 instance creation
+terraform aws code for vpc, subnets and multiple ec2 instance creation
