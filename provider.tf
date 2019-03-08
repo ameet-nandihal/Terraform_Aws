@@ -11,6 +11,7 @@ resource "aws_instance" "example" {
   ami           = "${lookup(var.amis, var.region)}"
   key_name      = "${aws_key_pair.mykey.key_name}"
   subnet_id     = "${element(data.aws_subnet_ids.private.ids, count.index)}"
+  vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
 
   tags {
     name = "ec2_instance-${count.index+1}"
