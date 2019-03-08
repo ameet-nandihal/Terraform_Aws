@@ -7,6 +7,7 @@ variable "region" {
 
 variable "amis" {
   type = "map"
+
   default = {
     "us-east-2" = "ami-0de7daa7385332688"
     "us-west-2" = "ami-4b32be2b"
@@ -18,8 +19,8 @@ variable "vpc_cidr" {
 }
 
 variable "subnet_cidr" {
-  type = "list"
-  default = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
+  type    = "list"
+  default = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
 
 #variable "azs" {
@@ -29,7 +30,7 @@ variable "subnet_cidr" {
 data "aws_availability_zones" "azs" {}
 
 variable "PATH_TO_PRIVATE_KEY" {
-  default  = "mykey"
+  default = "mykey"
 }
 
 variable "PATH_TO_PUBLIC_KEY" {
@@ -37,5 +38,5 @@ variable "PATH_TO_PUBLIC_KEY" {
 }
 
 variable "INSTANCE_USERNAME" {
-  default ="ec2-user"
+  default = "ec2-user"
 }
