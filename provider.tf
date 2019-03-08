@@ -13,6 +13,31 @@ resource "aws_instance" "example" {
   subnet_id     = "${element(data.aws_subnet_ids.private.ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
 
+ provisioner "file" {
+   source = "./uptime.sh"
+   destination = "/tmp/uptime.sh"
+
+   connection {
+     type     = "ssh"
+     user     = "ec2-user"
+     private_key = "${file(var.PATH_TO_PRIVATE_KEY)}"
+  }
+ }
+
+  provisioner "remote-exec" {
+    inline = ["chmod +x /tmp/uptime.sh","/tmp/uptime.sh"]
+  
+    connection {
+     type     = "ssh"
+     user     = "ec2-user"
+     private_key = "${file(var.PATH_TO_PRIVATE_KEY)}"
+
+  }
+
+
+  }
+
+
   tags {
     name = "ec2_instance-${count.index+1}"
   }
